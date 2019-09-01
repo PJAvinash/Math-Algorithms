@@ -1,0 +1,48 @@
+#include <cmath>
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+//function for counting primes less than n
+long int find_P_n(long int n)
+{
+    long int count =(n&1);
+    long int root_n =sqrt(n)+2;
+    n= (n>>1);
+    bool  a[n+1];
+    for(long int i =0;i<n+1;i++)
+    {
+        a[i]=true;
+    }
+    a[0]=false;
+    for(long int j =3;j<root_n;j+=2)
+    {
+        for(long int k =j;k*j<(2*n);k+=2)
+        {
+            a[((k*j)-1)>>1]=false;
+        }
+    }
+    for(long int i =0;i<n+1;i++)
+    {
+        if (a[i]==true){
+            count++;}
+
+    }
+    return count;
+
+  
+}
+
+
+int main() {
+     
+    long int n,k ;
+    scanf("%d%d", &n,&k);
+   
+    long int P_n= find_P_n(n);
+    printf("%ld",P_n);
+
+ 
+    return 0;
+}
